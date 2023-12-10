@@ -1,6 +1,55 @@
-/* В этом файле вы опишете значения переменных в разных цветовых схемах.
-Придерживайтесь такого именования классов:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ не забудьте описать стили для изменения темы через медизапрос пользовательских предпочтений
-*/
+:root.theme-light {
+  --main-color: #000;
+  --bg-color: #FFF;
+  --button-text-color: var(--bg-color);
+
+  --main-font-family: Inter;
+  --accent-font-family: PressStart2P;
+  --card-font-weight: 400;
+  --card-title-font-weight: 700;
+
+  --watermark-stroke: rgb(180, 180, 180);
+  --watermark-fill: rgba(0, 0, 0, 0.5);
+
+  --bg-image: repeating-linear-gradient(to right, #d3d3d3 0px 2px, transparent 2px 4px),
+  repeating-linear-gradient(to bottom, #d3d3d3 0px 2px, transparent 2px 4px),
+  linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a 100%);
+}
+
+:root.theme-dark {
+  --main-color: #00CC14;
+  --bg-color: #000;
+  --button-text-color: var(--main-color);
+
+  --main-font-family: Inter;
+  --accent-font-family: PressStart2P;
+  --card-font-weight: 400;
+  --card-title-font-weight: 785;
+
+  --watermark-stroke: rgb(0, 0, 0);
+  --watermark-fill: rgb(0, 204, 20, 0.5);
+
+  --bg-image: repeating-linear-gradient(to right, #000 0px 2px, transparent 2px 4px),
+  repeating-linear-gradient(to bottom, #000 0px 2px, transparent 2px 4px),
+  linear-gradient(to bottom, #007f0c, #004306);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-color: #00CC14;
+    --bg-color: #000;
+    --button-text-color: var(--main-color);
+
+    --main-font-family: Inter;
+    --accent-font-family: PressStart2P;
+    --card-font-weight: 400;
+    --card-title-font-weight: 785;
+
+    --watermark-stroke: rgb(0, 0, 0);
+    --watermark-fill: rgb(0, 204, 20, 0.5);
+
+    --bg-image: repeating-linear-gradient(to right, #000 0px 2px, transparent 2px 4px),
+    repeating-linear-gradient(to bottom, #000 0px 2px, transparent 2px 4px),
+    linear-gradient(to bottom, #007f0c, #004306);
+  }
+}

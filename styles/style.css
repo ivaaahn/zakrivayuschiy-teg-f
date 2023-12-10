@@ -1,20 +1,434 @@
-/* Здесь вы напишете основную часть стилей страницы.
+/* Common */
+.image {
+  height: var(--image-height);
+  width: var(--image-width);
+  object-fit: cover;
+  object-position: top right;
+  border-bottom: var(--border);
+}
 
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
+.button {
+  border: var(--border);
+  cursor: pointer;
+  position: relative;
 
-Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
+  font-family: var(--accent-font-family);
+  font-size: 14px;
+  line-height: 90%;
 
-*/
+  background-color: var(--bg-color);
+  color: var(--main-color)
+}
 
+.button::before {
+  content: "";
+  display: block;
+  position: absolute;
+
+  left: 0;
+  top: -2px;
+
+  width: 100%;
+  background-color: var(--main-color);
+  transition: transform 0.5s ease-in-out;
+  transform-origin: 0;
+  transform: scaleX(0);
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  box-shadow: 2px 2px 0 var(--main-color);
+}
+
+.button__text {
+  font-family: var(--accent-font-family);
+  color: var(--button-text-color);
+  mix-blend-mode: difference;
+  line-height: 90%;
+  font-size: 14px;
+  text-align: center;
+}
+
+.watermark {
+  position: absolute;
+  top: 25px;
+  right: 11px;
+
+  font-family: var(--accent-font-family);
+  font-size: 14px;
+  color: var(--watermark-fill);
+  mix-blend-mode: hard-light;
+  text-shadow: -1px 0 var(--watermark-stroke),
+  0 1px var(--watermark-stroke),
+  1px 0 var(--watermark-stroke),
+  0 -1px var(--watermark-stroke);
+}
+
+/* Concrete */
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  background-image: var(--bg-image);
+  background-size: cover;
+  font-family: var(--main-font-family);
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-variation-settings: 'wght' var(--card-font-weight);
+}
+
+.header {
+  background: var(--bg-color);
+  color: var(--main-color);
+  font-family: var(--accent-font-family);
+  border: var(--border);
+  display: grid;
+  justify-items: center;
+  align-items: end;
+  align-content: end;
+
+  width: var(--card-width);
+
+  padding-top: clamp(120px, 25%, 136px);
+  padding-bottom: 22px;
+  margin: 100px 0;
+  line-height: normal;
+}
+
+.header__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header__title-logo {
+  font-size: clamp(49px, 4.5vw, 65px);
+  text-transform: uppercase;
+}
+
+.header__title-text {
+  font-size: clamp(14px, 1.7vw, 23px);
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+.header__theme-menu {
+  font-size: 14px;
+  margin-top: 24px;
+}
+
+.theme-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.theme-menu__button {
+  position: relative;
+  border: none;
+  background-color: transparent;
+  text-transform: uppercase;
+  margin-left: 20px;
+}
+
+.theme-menu__button:hover {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  opacity: 0.6;
+}
+
+.theme-menu__button:focus-visible {
+  transition: opacity 0.3s ease;
+  opacity: 0.6;
+  outline: none;
+}
+
+.theme-menu__button:disabled {
+  transition: opacity 0.3s ease;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.theme-menu__button::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background-color: var(--main-color);
+  transition: transform 0.3s ease;
+  transform-origin: 0;
+  transform: scaleX(0);
+}
+
+.theme-menu__button:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.theme-menu__button:disabled::before {
+  content: "▶";
+  position: absolute;
+  top: 1px;
+  left: -14px;
+  animation: cursor-translation 0.5s ease-in-out infinite alternate;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+}
+
+.card {
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  border: var(--border);
+  width: var(--card-width);
+  line-height: normal;
+}
+
+.card__header {
+  color: var(--main-color);
+  font-family: var(--main-font-family);
+  font-variation-settings: 'wght' var(--card-title-font-weight);
+  font-size: 18px;
+  border-bottom: var(--border);
+
+  padding: 4px 10px;
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+
+  color: var(--main-color);
+  font-weight: var(--card-font-weight);
+  line-height: 21px;
+  font-size: 18px;
+
+  padding: 25px;
+}
+
+.card__memories {
+  margin-top: 27px;
+}
+
+.card__image {
+  height: var(--image-height);
+  width: var(--image-width);
+  position: relative;
+}
+
+.card__buttons {
+  margin-top: 24px;
+  display: flex;
+  align-items: start;
+  align-self: end;
+}
+
+.card__icon-button {
+  background-color: transparent;
+  border: none;
+
+  margin-top: -2px;
+
+  cursor: pointer;
+  transition: outline 0.3s ease;
+  outline: 2px solid transparent;
+  outline-offset: -4px;
+}
+
+.card__icon-button:focus {
+  outline: none;
+}
+
+.card__icon-button:focus-visible {
+  outline: 2px solid var(--main-color);
+}
+
+.card__like-button {
+  color: var(--main-color);
+  border: var(--border);
+
+  width: 130px;
+  height: 38px;
+  position: relative;
+}
+
+.card__like-button::before {
+  height: 38px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footer__button {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 50px;
+  margin-bottom: 100px;
+  width: 310px;
+  height: 84px;
+}
+
+.footer__button::before {
+  height: 84px;
+}
+
+.footer__button:hover::before {
+  transform: scaleX(1);
+}
+
+.footer__text {
+  color: var(--main-color);
+  background-color: var(--bg-color);
+}
+
+.floppy-icon {
+  width: 28px;
+  height: 28px;
+  fill: var(--button-text-color);
+  mix-blend-mode: difference;
+}
+
+.dialog {
+  background-color: var(--bg-color);
+  border: var(--border);
+  width: 341px;
+  padding: 30px 40px;
+  text-transform: uppercase;
+}
+
+.dialog[open] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  column-gap: 20px;
+  row-gap: 30px;
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.dialog__icon {
+  justify-self: center;
+  width: 29px;
+  height: 29px;
+  transform: scale(1.4);
+  fill: var(--main-color);
+}
+
+.dialog__text {
+  color: var(--main-color);
+  font-family: var(--accent-font-family);
+  font-size: 14px;
+  width: 198px;
+  line-height: 150%;
+  text-transform: uppercase;
+}
+
+
+.dialog__form {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.dialog__button {
+  display: block;
+  width: 100%;
+  height: 38px;
+}
+
+.dialog__button::before {
+  height: 38px;
+}
+
+.filter-brightness {
+  filter: brightness(50%);
+}
+
+.filter-brightness-blur {
+  filter: brightness(50%) blur(0.2rem);
+}
+
+.filter-contrast {
+  filter: contrast(20%);
+}
+
+.filter-blur {
+  filter: blur(0.2rem);
+}
+
+.filter-opacity {
+  filter: opacity(0.8);
+}
+
+.filter-grayscale {
+  filter: grayscale(0.8);
+}
+
+.filter-saturate {
+  filter: saturate(158%);
+}
+
+.filter-hue-rotate {
+  filter: hue-rotate(-90deg);
+}
+
+.filter-sepia {
+  filter: sepia(80%);
+}
+
+.filter-invert {
+  filter: invert(1);
+}
+
+@supports ((text-stroke: 1px var(--watermark-stroke)) or (-webkit-text-stroke: 1px var(--watermark-stroke)) ) {
+  .watermark {
+    -webkit-text-stroke: 1px var(--watermark-stroke);
+    text-stroke: 1px var(--watermark-stroke);
+    text-shadow: none;
+  }
+}
+
+@media (width > 375px) {
+  .watermark {
+    top: 26px;
+    right: 25px;
+  }
+
+  .footer__button {
+    flex-direction: row;
+    margin-bottom: 103px;
+    width: 339px;
+    height: 55px;
+  }
+
+  .footer__button::before {
+    height: 55px;
+  }
+
+  .dialog {
+    width: 357px;
+  }
+
+  .floppy-icon {
+    transform: scale(0.75);
+  }
 }

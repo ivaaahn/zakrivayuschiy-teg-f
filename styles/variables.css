@@ -1,1 +1,36 @@
-/* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+:root {
+  --bg-image: repeating-linear-gradient(to right, #d3d3d3 0 2px, transparent 2px 4px),
+  repeating-linear-gradient(to bottom, #d3d3d3 0 2px, transparent 2px 4px),
+  linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a 100%);
+
+  --main-color: #000;
+  --bg-color: #FFF;
+  --button-text-color: var(--bg-color);
+  --border: 2px solid var(--main-color);
+
+  --main-font-family: Inter, sans-serif;
+  --accent-font-family: PressStart2P, fantasy;
+
+  --default-text-weight: 400;
+  --default-title-weight: 700;
+
+  /* Card */
+  --card-font-weight: 400;
+  --card-title-font-weight: 700;
+  --card-max-width: 700px;
+  --card-width: clamp(373px, 100%, var(--card-max-width));
+
+  /* Image */
+  --image-height: clamp(373px, 100vw, 700px);
+  --image-width: 100%;
+
+  /* Watermark */
+  --watermark-stroke: rgb(180, 180, 180);
+  --watermark-fill: rgba(0, 0, 0, 0.5);
+
+  /*Like vars*/
+  --color-heart: #f00;
+  --contour-color: var(--main-color);
+  --main-body-color: var(--main-color);
+  --core-color: var(--main-color);
+}
