@@ -20,9 +20,12 @@
   --card-max-width: 700px;
   --card-width: clamp(373px, 100%, var(--card-max-width));
 
+  --image-wrapper-height: 100vw;
+
   /* Image */
-  --image-height: clamp(373px, 100vw, 700px);
+  --image-height: 100%;
   --image-width: 100%;
+
 
   /* Watermark */
   --watermark-stroke: rgb(180, 180, 180);
